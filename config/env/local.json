@@ -1,0 +1,11 @@
+{
+    "connection": {
+        "wp": {
+            "db": "karethic",
+            "user": "root",
+            "password": "password",
+            "tablePrefix": "_kar"
+        }
+    },
+    "url": "http://karethic.dvlp"
+}

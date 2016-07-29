@@ -1,0 +1,15 @@
+{
+    "connection": {
+        "wp": {
+            "db": "",
+            "user": "",
+            "password": "",
+            "host": "localhost",
+            "charset": "utf8mb4",
+            "collate": "",
+            "tablePrefix": ""
+        }
+    },
+    "url": "",
+    "memory": "512M"
+}
