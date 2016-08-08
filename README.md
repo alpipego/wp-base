@@ -12,31 +12,31 @@ My subjective basic Composer-WordPress blueprint
 
 ## Directory Structure
 
-.
-├── LICENSE
-├── README.md
-├── composer.json
-├── config
-│   ├── env
-│   │   ├── default.json
-│   │   └── local.json
-│   ├── env.json
-│   └── nginx
-│       └── local.conf
-├── log
-├── web
-│   ├── assets
-│   │   └── index.php
-│   ├── extensions
-│   │   └── index.php
-│   ├── index.php
-│   ├── languages
-│   │   └── index.php
-│   ├── plugins
-│   │   └── index.php
-│   ├── uploads
-│   │   └── index.php
-│   └── wp-config.php
-└── wp-config.php
+.  
+├── LICENSE  
+├── README.md  
+├── composer.json  
+├── config  
+│   ├── env  
+│   │   ├── default.json  
+│   │   └── local.json  
+│   ├── env.json  
+│   └── nginx  
+│       └── local.conf  
+├── log  
+├── web  
+│   ├── assets  
+│   │   └── index.php  
+│   ├── extensions  
+│   │   └── index.php  
+│   ├── index.php  
+│   ├── languages  
+│   │   └── index.php  
+│   ├── plugins  
+│   │   └── index.php  
+│   ├── uploads  
+│   │   └── index.php  
+│   └── wp-config.php  
+└── wp-config.php  
 
 * For a basic setup you should not have to touch more than the configuration files in `config` and the `composer.json`
