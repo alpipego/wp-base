@@ -11,18 +11,6 @@
         {
              "type": "composer",
              "url": "https://wp-languages.github.io/"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.3.9",
-                "type": "wordpress-plugin",
-                "dist": {
-                    "type": "zip",
-                    "url": "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=LICENSE_KEY"
-                }
-            }
         }
     ],
     "require": {
@@ -30,7 +18,7 @@
         "hassankhan/config": "~0.8",
         "johnpbloch/wordpress": "4.5.*",
         "koodimonni-language/core-de_DE": "4.5.*",
-        "advanced-custom-fields/advanced-custom-fields-pro": "*",
+        "wpackagist/advanced-custom-fields": "~4.4",
         "wpackagist-plugin/redirection": "~2.3",
         "wpackagist-plugin/loco-translate": "~1.5",
         "wpackagist-plugin/google-sitemap-generator": "~4.0",
