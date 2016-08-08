@@ -1,8 +1,6 @@
 {
     "name": "alpipego/wp-base",
-    "config": {
-        "secure-http": false
-    },
+    "type": "project",
     "repositories": [
         {
             "type": "composer",
@@ -31,17 +29,19 @@
         "johnpbloch/wordpress": "4.5.*",
         "koodimonni-language/core-de_DE": "4.5.*",
         "advanced-custom-fields/advanced-custom-fields-pro": "*",
-        "wpackagist-plugin/stage-wp-plugin-manager": "1.0",
-        "wpackagist-plugin/debug-plugin-activation-errors": "~1.9",
-        "wpackagist-plugin/rewrite-rules-inspector": "~1.2",
-        "wpackagist-plugin/query-monitor": "~2.7",
         "wpackagist-plugin/redirection": "~2.3",
         "wpackagist-plugin/loco-translate": "~1.5",
-        "wpackagist-plugin/disable-google-fonts": "1.1",
         "wpackagist-plugin/google-sitemap-generator": "~4.0",
         "wpackagist-plugin/no-self-ping": "0.2",
         "wpackagist-plugin/wp-mail-smtp": "~0.9",
         "wpackagist-plugin/user-role-editor": "~4.19"
+    },
+    "require-dev": {
+        "wpackagist-plugin/query-monitor": "~2.7",
+        "wpackagist-plugin/rewrite-rules-inspector": "~1.2",
+        "wpackagist-plugin/disable-google-fonts": "1.1",
+        "wpackagist-plugin/debug-plugin-activation-errors": "~1.9"
+
     },
     "extra": {
         "wordpress-install-dir": "web/wp",
