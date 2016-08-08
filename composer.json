@@ -18,7 +18,7 @@
         "hassankhan/config": "~0.8",
         "johnpbloch/wordpress": "4.5.*",
         "koodimonni-language/core-de_DE": "4.5.*",
-        "wpackagist/advanced-custom-fields": "~4.4",
+        "wpackagist-plugin/advanced-custom-fields": "~4.4",
         "wpackagist-plugin/redirection": "~2.3",
         "wpackagist-plugin/loco-translate": "~1.5",
         "wpackagist-plugin/google-sitemap-generator": "~4.0",
