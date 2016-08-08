@@ -10,6 +10,12 @@ My subjective basic Composer-WordPress blueprint
 * if you want to use **ACF Pro** you need to add a license key (as the value for the `k` query string)
 * some plugins like **WP Mail SMTP** tend to remove their old tags from the repository (if they do this the install will fail), to prevent this either change their version number to `"*"` or keep them in sync with wpackagist 
 
+As of version 1.0.0 this can also be installed as a project:
+
+```
+composer create-project alpipego/wp-base 1.0.* --no-scripts
+```
+
 ## Directory Structure
 
 .  
@@ -40,3 +46,29 @@ My subjective basic Composer-WordPress blueprint
 └── wp-config.php  
 
 * For a basic setup you should not have to touch more than the configuration files in `config` and the `composer.json`
+
+## Plugins not in repository
+
+A lot of plugins that are not in the repository can be installed by getting their zip archive:
+
+```
+{
+    "type": "package",
+    "package": {
+        "name": "advanced-custom-fields/advanced-custom-fields-pro",
+        "version": "5.3.9",
+        "type": "wordpress-plugin",
+        "dist": {
+            "type": "zip",
+            "url": "http://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=LICENSE_KEY"
+        }
+    }
+}
+```
+
+Add the correct version above and then require it with:
+
+```
+"advanced-custom-fields/advanced-custom-fields-pro": "*"
+```
+
