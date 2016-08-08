@@ -1,5 +1,7 @@
 {
     "name": "alpipego/wp-base",
+    "description": "WordPress Installation Blueprint (Including recurrent plugins etc.)",
+    "license": "GPL 3.0+",
     "type": "project",
     "repositories": [
         {
