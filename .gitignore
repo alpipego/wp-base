@@ -3,6 +3,7 @@ composer.lock
 config/config.json
 vendor/
 *.log
+.idea/
 
 web/wp/*
 
@@ -22,4 +23,5 @@ web/assets/themes/*
 !web/assets/themes/index.php
 
 web/uploads/*
-!web/uploads/index.php.idea/
+!web/uploads/index.php
+
