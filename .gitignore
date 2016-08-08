@@ -22,4 +22,4 @@ web/assets/themes/*
 !web/assets/themes/index.php
 
 web/uploads/*
-!web/uploads/index.php
+!web/uploads/index.php.idea/
