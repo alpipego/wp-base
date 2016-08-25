@@ -43,7 +43,7 @@
         "dropin-paths": {
             "web/languages/": ["vendor:koodimonni-language"]
         }
-    }    
+    },    
     "scripts": {
         "post-install-cmd": "sudo chown -R www-data log/ web/",
         "pre-update-cmd": "sudo chown -R `whoami` web/",
