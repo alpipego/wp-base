@@ -15,29 +15,34 @@
     ],
     "require": {
         "php": ">=5.4",
-        "hassankhan/config": "~0.8",
-        "johnpbloch/wordpress": "4.5.*",
-        "koodimonni-language/core-de_DE": "4.5.*",
-        "wpackagist-plugin/advanced-custom-fields": "~4.4",
-        "wpackagist-plugin/redirection": "~2.3",
-        "wpackagist-plugin/loco-translate": "~1.5",
+        "hassankhan/config": "0.8.*",
+        "composer/installers": "~v1.2",
+
+        "johnpbloch/wordpress": "4.6.*",
+        "koodimonni/composer-dropin-installer": "dev-master",
+
+        "brain/occipital": "dev-master",
+
+        "wpackagist-plugin/advanced-custom-fields": "4.4.*",
+        "wpackagist-plugin/redirection": "~2.4",
+        "wpackagist-plugin/loco-translate": "~2.0",
         "wpackagist-plugin/google-sitemap-generator": "~4.0",
         "wpackagist-plugin/no-self-ping": "0.2",
-        "wpackagist-plugin/wp-mail-smtp": "~0.9",
-        "wpackagist-plugin/user-role-editor": "~4.19"
+        "wpackagist-plugin/postman-smtp": "~1.7",
+        "wpackagist-plugin/user-role-editor": "~4.0"
     },
     "require-dev": {
-        "wpackagist-plugin/query-monitor": "~2.7",
-        "wpackagist-plugin/rewrite-rules-inspector": "~1.2",
-        "wpackagist-plugin/disable-google-fonts": "1.1",
-        "wpackagist-plugin/debug-plugin-activation-errors": "~1.9"
+        "wpackagist-plugin/query-monitor": "*",
+        "wpackagist-plugin/rewrite-rules-inspector": "*",
+        "wpackagist-plugin/debug-plugin-activation-errors": "*",
+        "sllh/composer-versions-check": "^2.0"
 
     },
     "extra": {
         "wordpress-install-dir": "web/wp",
         "installer-paths": {
-            "web/plugins/{$name}/": ["type:wordpress-muplugin"],
-            "web/extensions/{$vendor}-{$name}/": ["type:wordpress-plugin"],
+            "web/must-use/{$name}/": ["type:wordpress-muplugin"],
+            "web/plugins/{$vendor}-{$name}/": ["type:wordpress-plugin"],
             "web/assets/themes/{$name}/": ["type:wordpress-theme"]
         },
         "dropin-paths": {
