@@ -11,5 +11,6 @@
         }
     },
     "url": "",
-    "memory": "512M"
+    "memory": "512M",
+    "disable_cron": true
 }
