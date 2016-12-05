@@ -36,19 +36,19 @@ define( 'NONCE_SALT', '*X=ewfmEzTR/Ah~YS]>9%)t-5f-g-I^&r*L#w<LM@=zHb[&v@RC/Vj3q+
 /**
  * WordPress debugging mode.
  */
+ini_set( 'error_log', __DIR__ . '/log/wp.log' );
+
 switch ( $env->get( 'env' ) ) {
 	case 'local':
 		define( 'WP_DEBUG', true );
 		define( 'SAVEQUERIES', true );
 		define( 'WP_DEBUG_DISPLAY', true );
-		define( 'WP_DEBUG_LOG', true );
 		define( 'DISABLE_CACHE', true );
 		break;
 	case 'staging':
 		define( 'WP_DEBUG', true );
 		define( 'SAVEQUERIES', false );
 		define( 'WP_DEBUG_DISPLAY', false );
-		define( 'WP_DEBUG_LOG', true );
 		define( 'DISABLE_CACHE', false );
 		break;
 	case 'production':
@@ -56,10 +56,6 @@ switch ( $env->get( 'env' ) ) {
 		define( 'SAVEQUERIES', false );
 		define( 'DISABLE_CACHE', false );
 		break;
-}
-
-if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
-	ini_set( 'error_log', __DIR__ . '/log/wp.log' );
 }
 
 /**
@@ -90,15 +86,10 @@ define( 'DISALLOW_FILE_MODS', false );
 define( 'DISALLOW_FILE_EDIT', true );
 define( 'WP_MAX_MEMORY_LIMIT', $conf->get( 'memory' ) );
 define( 'WP_MEMORY_LIMIT', $conf->get( 'memory' ) );
-define( 'DISABLE_WP_CRON', false );
+define( 'DISABLE_WP_CRON', $conf->get( 'disable_cron' ) );
 
 /**
  * Environment Constants
  */
 define( 'WP_STAGE', $env->get( 'env' ) );
 define( 'WP_ENV', $env->get( 'env' ) );
-
-/**
- * Sets up WordPress vars and included files.
- */
-require_once( ABSPATH . 'wp-settings.php' );
