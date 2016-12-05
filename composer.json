@@ -15,18 +15,15 @@
     ],
     "require": {
         "php": ">=5.4",
-        "hassankhan/config": "0.8.*",
+        "hassankhan/config": "0.10.*",
         "composer/installers": "~v1.2",
 
         "johnpbloch/wordpress": "4.6.*",
-        "koodimonni/composer-dropin-installer": "dev-master",
-
-        "brain/occipital": "dev-master",
+        "koodimonni/composer-dropin-installer": "*",
 
         "wpackagist-plugin/advanced-custom-fields": "4.4.*",
         "wpackagist-plugin/redirection": "~2.4",
         "wpackagist-plugin/loco-translate": "~2.0",
-        "wpackagist-plugin/google-sitemap-generator": "~4.0",
         "wpackagist-plugin/no-self-ping": "0.2",
         "wpackagist-plugin/postman-smtp": "~1.7",
         "wpackagist-plugin/user-role-editor": "~4.0"
@@ -36,7 +33,6 @@
         "wpackagist-plugin/rewrite-rules-inspector": "*",
         "wpackagist-plugin/debug-plugin-activation-errors": "*",
         "sllh/composer-versions-check": "^2.0"
-
     },
     "extra": {
         "wordpress-install-dir": "web/wp",
@@ -48,7 +44,7 @@
         "dropin-paths": {
             "web/languages/": ["vendor:koodimonni-language"]
         }
-    },    
+    },
     "scripts": {
         "post-install-cmd": "sudo chown -R www-data log/ web/",
         "pre-update-cmd": "sudo chown -R `whoami` web/",
