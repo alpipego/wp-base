@@ -1,53 +1,81 @@
 {
-    "name": "alpipego/wp-base",
-    "description": "WordPress Installation Blueprint (Including recurrent plugins etc.)",
-    "license": "GPL 3.0+",
-    "type": "project",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://wpackagist.org"
-        },
-        {
-             "type": "composer",
-             "url": "https://wp-languages.github.io/"
-        }
-    ],
-    "require": {
-        "php": ">=5.4",
-        "hassankhan/config": "0.10.*",
-        "composer/installers": "~v1.2",
-
-        "johnpbloch/wordpress": "4.6.*",
-        "koodimonni/composer-dropin-installer": "*",
-
-        "wpackagist-plugin/advanced-custom-fields": "4.4.*",
-        "wpackagist-plugin/redirection": "~2.4",
-        "wpackagist-plugin/loco-translate": "~2.0",
-        "wpackagist-plugin/no-self-ping": "0.2",
-        "wpackagist-plugin/postman-smtp": "~1.7",
-        "wpackagist-plugin/user-role-editor": "~4.0"
+  "name": "alpipego/wp-base",
+  "description": "WordPress Installation Blueprint (Including recurrent plugins etc.)",
+  "license": "GPL-3.0-or-later",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
     },
-    "require-dev": {
-        "wpackagist-plugin/query-monitor": "*",
-        "wpackagist-plugin/rewrite-rules-inspector": "*",
-        "wpackagist-plugin/debug-plugin-activation-errors": "*",
-        "sllh/composer-versions-check": "^2.0"
-    },
-    "extra": {
-        "wordpress-install-dir": "web/wp",
-        "installer-paths": {
-            "web/must-use/{$name}/": ["type:wordpress-muplugin"],
-            "web/plugins/{$vendor}-{$name}/": ["type:wordpress-plugin"],
-            "web/assets/themes/{$name}/": ["type:wordpress-theme"]
-        },
-        "dropin-paths": {
-            "web/languages/": ["vendor:koodimonni-language"]
-        }
-    },
-    "scripts": {
-        "post-install-cmd": "sudo chown -R www-data log/ web/",
-        "pre-update-cmd": "sudo chown -R `whoami` web/",
-        "post-update-cmd": "sudo chown -R www-data web/"
+    {
+      "type": "composer",
+      "url": "https://wp-languages.github.io"
     }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "johnpbloch/wordpress-core-installer": "^1.0",
+    "johnpbloch/wordpress-core": "^4.9",
+    "hassankhan/config": "^1.0",
+    "composer/installers": "^1.5",
+    "koodimonni/composer-dropin-installer": "^1.2",
+    "alpipego/awp-di": "^0.4.1",
+    "alpipego/awp-template": "dev-develop",
+    "symfony/cache": "^4.0",
+    "predis/predis": "^1.1",
+    "alpipego/awp-assets": "^0.3.0",
+    "alpipego/ghcp": "^0.2",
+    "alpipego/awp-cache": "^0.1.0",
+    "wp-cli/wp-cli": "^1.5",
+    "gordalina/cachetool": "^3.0",
+    "wpackagist-plugin/disable-wordpress-updates": "^1.6",
+    "tillkruss/redis-cache": "^1.3",
+    "wpackagist-plugin/no-self-ping": "^1.1",
+    "wpackagist-plugin/disable-emojis": "^1.7"
+  },
+  "require-dev": {
+    "wpackagist-plugin/query-monitor": "^3.0",
+    "wpackagist-plugin/rewrite-rules-inspector": "^1.2",
+    "wpackagist-plugin/debug-plugin-activation-errors": "^1.9",
+    "sllh/composer-versions-check": "^2.0",
+    "deployer/recipes": "^6.0",
+    "deployer/deployer": "^6.1",
+    "rmccue/requests": "^1.7",
+    "yosymfony/toml": "^1.0"
+  },
+  "extra": {
+    "wordpress-install-dir": "web/wp",
+    "installer-paths": {
+      "web/must-use/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/plugins/{$vendor}-{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/assets/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    },
+    "dropin-paths": {
+      "web/languages/": [
+        "vendor:koodimonni-language"
+      ]
+    }
+  },
+  "authors": [
+    {
+      "name": "Alexander Goller",
+      "email": "alpipego@gmail.com",
+      "homepage": "https://alpipego.com",
+      "role": "Developer"
+    }
+  ],
+  "scripts": [
+    {
+      "post-create-project-cmd": [
+        "/usr/bin/env php ./vendor/bin/dep --file=setup.php setup"
+      ]
+    }
+  ]
 }
