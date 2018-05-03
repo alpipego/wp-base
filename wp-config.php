@@ -4,92 +4,85 @@ include __DIR__ . '/vendor/autoload.php';
 
 use Noodlehaus\Config;
 
-$env = new Config( __DIR__ . '/config/env.json' );
-
-$conf = new Config( [
-	__DIR__ . '/config/env/default.json',
-	__DIR__ . '/config/env/' . $env->get( 'env' ) . '.json',
-] );
-/**
- * DB Settings
- */
-define( 'DB_NAME', $conf->get( 'connection.wp.db' ) );
-define( 'DB_USER', $conf->get( 'connection.wp.user' ) );
-define( 'DB_PASSWORD', $conf->get( 'connection.wp.password' ) );
-define( 'DB_HOST', $conf->get( 'connection.wp.host' ) );
-define( 'DB_CHARSET', $conf->get( 'connection.wp.charset' ) );
-define( 'DB_COLLATE', $conf->get( 'connection.wp.collate' ) );
-$table_prefix = $conf->get( 'connection.wp.tablePrefix' );
-
-/**
- * Authentication Unique Keys and Salts.
- */
-define( 'AUTH_KEY', '|Z/o<o/pDq~}x$,7l)}>dOyWsjr CkdUbQAV<}q;C@P:UclIhfk{3vXZkx)diiji' );
-define( 'SECURE_AUTH_KEY', 'W4OR&dXJ0M9BliS;BA{w_Oz>v-HpSMO],%=@{(*/k%%xbTk}myg-y}:9bmd G>{=' );
-define( 'LOGGED_IN_KEY', '|X!+kzbcy[95I5KHmBXc_GPs?A1l0YpUylHb{T+RH=-r~SOpS1E#T_Yz5J;Z*25]' );
-define( 'NONCE_KEY', 'UV}1UFk9Zx&Ny1W[6zpW8hLoO?YJ*ZcjnZk@[!f`%C*EJhD06nc>lyv-Rm[Bp  ;' );
-define( 'AUTH_SALT', '`*M!wKy-sfi:*8TZcZ8=z|#UDBQL}NY4gW>RyH^U]^8E?@1vkY7R4dL|q,w-lOdb' );
-define( 'SECURE_AUTH_SALT', 'z-cO,gxRyQh,,m?fK}l-{/R]RKU]H3)|5iD3rv`P4 i.rBg|MTiC)- ^/:iSL|p=' );
-define( 'LOGGED_IN_SALT', '@|HA1YB@J1f>CximM{]ZkIz%z~ akYl|:1l1#1gDC?-,l/o&iB7Onr#U+v-{q+#}' );
-define( 'NONCE_SALT', '*X=ewfmEzTR/Ah~YS]>9%)t-5f-g-I^&r*L#w<LM@=zHb[&v@RC/Vj3q+b{|61+-' );
-
-/**
- * WordPress debugging mode.
- */
-ini_set( 'error_log', __DIR__ . '/log/wp.log' );
-
-switch ( $env->get( 'env' ) ) {
-	case 'local':
-		define( 'WP_DEBUG', true );
-		define( 'SAVEQUERIES', true );
-		define( 'WP_DEBUG_DISPLAY', true );
-		define( 'DISABLE_CACHE', true );
-		break;
-	case 'staging':
-		define( 'WP_DEBUG', true );
-		define( 'SAVEQUERIES', false );
-		define( 'WP_DEBUG_DISPLAY', false );
-		define( 'DISABLE_CACHE', false );
-		break;
-	case 'production':
-		define( 'WP_DEBUG', false );
-		define( 'SAVEQUERIES', false );
-		define( 'DISABLE_CACHE', false );
-		break;
+try {
+    $env  = new Config(__DIR__ . '/config/.machine/env.json');
+    $conf = new Config(__DIR__ . '/config/.machine/' . $env->get('env') . '.json');
+} catch (\Exception $e) {
+    echo 'We can\'t find a valid configuration. Please run `/usr/bin/env php ./vendor/bin/dep --file=setup.php setup` first.';
 }
 
-/**
- * Folder Structure
- */
-if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+if ($conf->get('connection.type') === 'sqlite') {
+    define('USE_MYSQL', false);
+    define('DB_FILE', $conf->get('connection.wp.file') . '.sqlite');
+    define('DB_DIR', __DIR__ . '/' . $conf->get('connection.wp.dir'));
 }
 
-define( 'WP_SITEURL', $conf->get( 'url' ) . 'wp/' );
-define( 'WP_HOME', $conf->get( 'url' ) );
+define('DB_NAME', $conf->get('connection.wp.db'));
+define('DB_USER', $conf->get('connection.wp.user'));
+define('DB_PASSWORD', $conf->get('connection.wp.password'));
+define('DB_HOST', $conf->get('connection.wp.host'));
+define('DB_CHARSET', $conf->get('connection.wp.charset'));
+define('DB_COLLATE', $conf->get('connection.wp.collate'));
+
+$table_prefix = $conf->get('connection.wp.tablePrefix');
+
+define('AUTH_KEY', $conf->get('keys.auth'));
+define('SECURE_AUTH_KEY', $conf->get('keys.secure_auth'));
+define('LOGGED_IN_KEY', $conf->get('keys.logged_in'));
+define('NONCE_KEY', $conf->get('keys.nonce'));
+define('AUTH_SALT', $conf->get('salt.auth'));
+define('SECURE_AUTH_SALT', $conf->get('salt.secure_auth'));
+define('LOGGED_IN_SALT', $conf->get('salt.logged_in'));
+define('NONCE_SALT', $conf->get('salt.nonce'));
+
+define('BASE_PATH', __DIR__ . '');
+define('LOG_DIR', __DIR__ . '/log');
+define('CONTENT_PATH', realpath(ABSPATH . '../'));
+
+ini_set('error_log', LOG_DIR . '/wp.log');
+ini_set('log_errors_max_len', '0');
+define('WP_DEBUG', true);
+switch ($conf->get('env')) {
+    case 'local':
+        define('SAVEQUERIES', true);
+        define('WP_DEBUG_DISPLAY', true);
+        define('DISABLE_CACHE', true);
+        break;
+    case 'staging':
+        define('SAVEQUERIES', true);
+        define('WP_DEBUG_DISPLAY', false);
+        define('DISABLE_CACHE', false);
+        break;
+    case 'production':
+        define('SAVEQUERIES', false);
+        define('WP_DEBUG_DISPLAY', false);
+        define('DISABLE_CACHE', false);
+        break;
+    default:
+        break;
+}
+
+define('WP_SITEURL', $conf->get('domain.url') . 'wp/');
+define('WP_HOME', $conf->get('domain.url'));
 
 define( 'WP_CONTENT_FOLDERNAME', 'assets' );
-define( 'WP_CONTENT_DIR', ABSPATH . '../' . WP_CONTENT_FOLDERNAME );
+define( 'WP_CONTENT_DIR', CONTENT_PATH . '/' . WP_CONTENT_FOLDERNAME );
 define( 'WP_CONTENT_URL', WP_HOME . WP_CONTENT_FOLDERNAME );
-define( 'WP_PLUGIN_DIR', ABSPATH . '../plugins' );
+define( 'WP_PLUGIN_DIR', CONTENT_PATH . '/plugins' );
 define( 'WP_PLUGIN_URL', WP_HOME . 'plugins' );
-define( 'WPMU_PLUGIN_DIR', ABSPATH . '../must-use' );
-define( 'WPMU_PLUGIN_URL', WP_HOME . 'must-use' );
+define( 'WPMU_PLUGIN_DIR', CONTENT_PATH . '/mu-plugins' );
+define( 'WPMU_PLUGIN_URL', WP_HOME . 'mu-plugins' );
 define( 'UPLOADS', '../uploads' );
-define( 'WP_TEMP_DIR', ABSPATH . '../temp' );
-define( 'WP_LANG_DIR', ABSPATH . '../languages' );
+define( 'WP_TEMP_DIR', CONTENT_PATH . '/temp' );
+define( 'WP_LANG_DIR', CONTENT_PATH . '/languages' );
 
-/**
- * MISC
- */
-define( 'DISALLOW_FILE_MODS', false );
-define( 'DISALLOW_FILE_EDIT', true );
-define( 'WP_MAX_MEMORY_LIMIT', $conf->get( 'memory' ) );
-define( 'WP_MEMORY_LIMIT', $conf->get( 'memory' ) );
-define( 'DISABLE_WP_CRON', $conf->get( 'disable_cron' ) );
+define('DISALLOW_FILE_MODS', false);
+define('DISALLOW_FILE_EDIT', true);
+define('WP_MAX_MEMORY_LIMIT', $conf->get('memory'));
+define('WP_MEMORY_LIMIT', $conf->get('memory'));
+define('DISABLE_WP_CRON', $conf->get('disable_cron'));
 
-/**
- * Environment Constants
- */
-define( 'WP_STAGE', $env->get( 'env' ) );
-define( 'WP_ENV', $env->get( 'env' ) );
+define('WP_STAGE', $env->get('env'));
+define('WP_ENV', $env->get('env'));
+
+define( 'SCRIPT_DEBUG', $conf->get( 'env' ) === 'local' );
