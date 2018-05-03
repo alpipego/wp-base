@@ -23,7 +23,7 @@ function testLocally($command, $testValue = true)
 
 function getUrl()
 {
-    return Toml::parseFile(__DIR__.'/config/env.local.toml')['domain']['url'];
+    return Toml::parseFile(__DIR__ . '/config/env.local.toml')['domain']['url'];
 }
 
 task('setup', [
@@ -91,7 +91,7 @@ task('setup:finish', function () {
 
 task('setup:wpcli', function () {
     $url       = getUrl();
-    $user = ask('WordPress main user?', '');
+    $user      = ask('WordPress main user?', '');
     $cliConfig = <<<EOT
 path: web/wp
 url: $url
@@ -133,7 +133,10 @@ task('setup:config', function () {
 
     // set the URL
     $url = sprintf('%s://%s', $local['domain']['scheme'], $local['domain']['host']);
-    $url .= empty($local['domain']['port']) ? '/' : ':' . $local['domain']['port'];
+    if ( ! empty($local['domain']['port'])) {
+        $url .= ':' . $local['domain']['port'];
+    }
+    $url .= '/';
     $env->addValue('url', $url);
 
 
@@ -166,7 +169,10 @@ task('setup:config', function () {
             ->addValue('file', ask('Enter the database file', $defaults['connection']['wp']['file']))
             ->addValue('dir', ask('Enter the database directory', $defaults['connection']['wp']['dir']));
     }
-    $env->addValue('table_prefix', ask('Enter the table prefix', $defaults['connection']['wp']['table_prefix']));
+    while (empty($prefix)) {
+        $prefix = ask('Enter the table prefix', $defaults['connection']['wp']['table_prefix']);
+    }
+    $env->addValue('table_prefix', $prefix);
 
     // browsersync
     writeln('');
