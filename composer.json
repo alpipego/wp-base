@@ -73,7 +73,7 @@
   ],
   "scripts": {
     "post-create-project-cmd": [
-      "run `/usr/bin/env php ./vendor/bin/dep --file=setup.php setup` now to setup your local site"
+      "echo 'run `/usr/bin/env php ./vendor/bin/dep --file=setup.php setup` now to setup your local site'"
     ]
   }
 }
