@@ -1,0 +1,68 @@
+name = ""
+description = ""
+license = ""
+type = ""
+
+[[repositories]]
+type = "composer"
+url = "https://wpackagist.org"
+
+[[repositories]]
+type = "composer"
+url = "https://wp-languages.github.io"
+
+[require]
+"php" = ">=7.1"
+# core
+"johnpbloch/wordpress-core-installer" = "^1.0"
+"johnpbloch/wordpress-core" = "^4.9"
+"hassankhan/config" = "^1.0"
+"composer/installers" = "^1.5"
+"koodimonni/composer-dropin-installer" = "^1.2"
+
+# libs
+"alpipego/awp-di" = "^0.4.1"
+"alpipego/awp-template" = "dev-develop"
+"symfony/cache" = "^4.0"
+"predis/predis" = "^1.1"
+"alpipego/awp-assets" = "^0.3.0"
+"alpipego/ghcp" = "^0.2"
+"alpipego/awp-cache" = "^0.1.0"
+
+"wp-cli/wp-cli" = "^1.5"
+"gordalina/cachetool" = "^3.0"
+
+# plugins
+"wpackagist-plugin/disable-wordpress-updates" = "^1.6"
+"tillkruss/redis-cache" = "^1.3"
+"wpackagist-plugin/no-self-ping" = "^1.1"
+"wpackagist-plugin/disable-emojis" = "^1.7"
+
+[require-dev]
+"wpackagist-plugin/query-monitor" = "^3.0"
+"wpackagist-plugin/rewrite-rules-inspector" = "^1.2"
+"wpackagist-plugin/debug-plugin-activation-errors" = "^1.9"
+"sllh/composer-versions-check" = "^2.0"
+"deployer/recipes" = "^6.0"
+"deployer/deployer" = "^6.1"
+"rmccue/requests" = "^1.7"
+"yosymfony/toml" = "^1.0"
+
+[extra]
+"wordpress-install-dir" = "web/wp"
+
+[extra.installer-paths]
+"web/must-use/{$name}/" = ["type:wordpress-muplugin"]
+"web/plugins/{$vendor}-{$name}/" = ["type:wordpress-plugin"]
+"web/assets/themes/{$name}/" = ["type:wordpress-theme"]
+
+[extra.dropin-paths]
+"web/languages/" = ["vendor:koodimonni-language"]
+
+[[authors]]
+"name" = "Alexander Goller"
+"email" = "alpipego@gmail.com"
+"homepage" = "https://alpipego.com"
+"role" = "Developer"
+
+[[scripts]]
