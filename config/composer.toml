@@ -65,4 +65,4 @@ url = "https://wp-languages.github.io"
 "homepage" = "https://alpipego.com"
 "role" = "Developer"
 
-[[scripts]]
+[scripts]

@@ -71,11 +71,9 @@
       "role": "Developer"
     }
   ],
-  "scripts": [
-    {
-      "post-create-project-cmd": [
-        "/usr/bin/env php ./vendor/bin/dep --file=setup.php setup"
-      ]
-    }
-  ]
+  "scripts": {
+    "post-create-project-cmd": [
+      "/usr/bin/env php ./vendor/bin/dep --file=setup.php setup"
+    ]
+  }
 }
