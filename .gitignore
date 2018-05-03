@@ -1,27 +1,38 @@
-.DS_Store
-composer.lock
-config/config.json
-vendor/
 *.log
+.DS_Store
 .idea/
 
-web/wp/*
+# third party
+vendor/
+node_modules
 
-web/extensions/*
-!web/extensions/index.php
+# local configs
+config/.machine
+config/env.local.toml
+config/nginx/local.conf
+wp-cli.local.yml
+ssh_config
+php-server.ini
+.nvmrc
 
-web/languages/*
+web/wp/
+
+web/languages/
 !web/languages/index.php
 
-web/plugins/*
+web/plugins/
 !web/plugins/index.php
-!web/plugins/proxy-loader.php
 
-web/assets/*
+web/mu-plugins/
+!web/mu-plugins/index.php
+
+web/assets/
 !web/assets/index.php
-web/assets/themes/*
+web/assets/themes/
 !web/assets/themes/index.php
 
-web/uploads/*
+web/uploads/
 !web/uploads/index.php
 
+# overrides
+!.gitkeep
