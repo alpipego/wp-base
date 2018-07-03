@@ -13,6 +13,14 @@
       "url": "https://wp-languages.github.io"
     }
   ],
+  "autoload": {
+    "psr-4": {
+    },
+    "files": [
+      "config/WPBase_TomlConfig.php",
+      "config/WPBase_TomlEnv.php"
+    ]
+  },
   "require": {
     "php": ">=7.1",
     "johnpbloch/wordpress-core-installer": "^1.0",

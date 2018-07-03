@@ -2,11 +2,8 @@
 
 include __DIR__ . '/vendor/autoload.php';
 
-use Noodlehaus\Config;
-
 try {
-    $env  = new Config(__DIR__ . '/config/.machine/env.json');
-    $conf = new Config(__DIR__ . '/config/.machine/' . $env->get('env') . '.json');
+    $conf = new WPBase_TomlConfig(__DIR__ . '/config/env.' . (new WPBase_TomlEnv(__DIR__ . '/config/env.toml'))->get('env') . '.toml');
 } catch (\Exception $e) {
     echo 'We can\'t find a valid configuration. Please run `/usr/bin/env php ./vendor/bin/dep --file=setup.php setup` first.';
 }
@@ -82,7 +79,7 @@ define('WP_MAX_MEMORY_LIMIT', $conf->get('memory'));
 define('WP_MEMORY_LIMIT', $conf->get('memory'));
 define('DISABLE_WP_CRON', $conf->get('disable_cron'));
 
-define('WP_STAGE', $env->get('env'));
-define('WP_ENV', $env->get('env'));
+define('WP_STAGE', $conf->get('env'));
+define('WP_ENV', $conf->get('env'));
 
 define('SCRIPT_DEBUG', $conf->get('env') === 'local');
