@@ -35,6 +35,7 @@ task('setup', [
 ]);
 
 task('setup:packages_install', function () {
+    writeln('<info>Installing Node Packages.</info>');
     runLocally('npm i');
 });
 
@@ -42,7 +43,8 @@ task('setup:packages', function () {
     writeln('');
     if (file_exists(__DIR__ . '/package.json')) {
         if ( ! askConfirmation('<error>package.json already exists, do you want to override it?', false)) {
-            die();
+            writeln('<info>Skipping packages.json</info>');
+            return;
         }
     }
     writeln('<comment>Writing package.json</comment>');
