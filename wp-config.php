@@ -24,7 +24,7 @@ define('DB_HOST', $conf->get('connection.wp.host'));
 define('DB_CHARSET', $conf->get('connection.wp.charset'));
 define('DB_COLLATE', $conf->get('connection.wp.collate'));
 
-$table_prefix = $conf->get('connection.wp.tablePrefix');
+$table_prefix = $conf->get('connection.wp.table_prefix');
 
 define('AUTH_KEY', $conf->get('keys.auth'));
 define('SECURE_AUTH_KEY', $conf->get('keys.secure_auth'));
@@ -65,16 +65,16 @@ switch ($conf->get('env')) {
 define('WP_SITEURL', $conf->get('domain.url') . 'wp/');
 define('WP_HOME', $conf->get('domain.url'));
 
-define( 'WP_CONTENT_FOLDERNAME', 'assets' );
-define( 'WP_CONTENT_DIR', CONTENT_PATH . '/' . WP_CONTENT_FOLDERNAME );
-define( 'WP_CONTENT_URL', WP_HOME . WP_CONTENT_FOLDERNAME );
-define( 'WP_PLUGIN_DIR', CONTENT_PATH . '/plugins' );
-define( 'WP_PLUGIN_URL', WP_HOME . 'plugins' );
-define( 'WPMU_PLUGIN_DIR', CONTENT_PATH . '/mu-plugins' );
-define( 'WPMU_PLUGIN_URL', WP_HOME . 'mu-plugins' );
-define( 'UPLOADS', '../uploads' );
-define( 'WP_TEMP_DIR', CONTENT_PATH . '/temp' );
-define( 'WP_LANG_DIR', CONTENT_PATH . '/languages' );
+define('WP_CONTENT_FOLDERNAME', 'assets');
+define('WP_CONTENT_DIR', CONTENT_PATH . '/' . WP_CONTENT_FOLDERNAME);
+define('WP_CONTENT_URL', WP_HOME . WP_CONTENT_FOLDERNAME);
+define('WP_PLUGIN_DIR', CONTENT_PATH . '/plugins');
+define('WP_PLUGIN_URL', WP_HOME . 'plugins');
+define('WPMU_PLUGIN_DIR', CONTENT_PATH . '/mu-plugins');
+define('WPMU_PLUGIN_URL', WP_HOME . 'mu-plugins');
+define('UPLOADS', '../uploads');
+define('WP_TEMP_DIR', CONTENT_PATH . '/temp');
+define('WP_LANG_DIR', CONTENT_PATH . '/languages');
 
 define('DISALLOW_FILE_MODS', false);
 define('DISALLOW_FILE_EDIT', true);
@@ -85,4 +85,4 @@ define('DISABLE_WP_CRON', $conf->get('disable_cron'));
 define('WP_STAGE', $env->get('env'));
 define('WP_ENV', $env->get('env'));
 
-define( 'SCRIPT_DEBUG', $conf->get( 'env' ) === 'local' );
+define('SCRIPT_DEBUG', $conf->get('env') === 'local');
